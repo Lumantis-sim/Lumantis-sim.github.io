@@ -54,14 +54,23 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 1000;
         }
+        /* AJOUTER CECI */
         .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            height: 100%; /* S'assure que le lien prend toute la hauteur de la nav */
             text-decoration: none;
         }
-        .logo span { color: var(--accent-orange); }
+
+        .logo img {
+            height: 45px; /* Ajuste cette valeur pour la taille du logo dans la barre */
+            width: auto;  /* Garde les proportions */
+            transition: transform 0.3s ease; /* Petit effet au survol */
+        }
+
+        .logo img:hover {
+            transform: scale(1.05); /* Légère animation au survol */
+        }
         
         .nav-links { display: flex; gap: 30px; }
         .nav-links a {
@@ -225,8 +234,10 @@
     <div class="bg-blob blob-1"></div>
     <div class="bg-blob blob-2"></div>
 
-    <nav>
-        <a href="#" class="logo">LUMAN<span>TIS</span></a>
+   <nav>
+        <a href="#" class="logo">
+            <img src="assets/logo.png" alt="Lumantis Logo">
+        </a>
         <div class="nav-links">
             <a href="#services">Services</a>
             <a href="#portfolio">Portfolio</a>
