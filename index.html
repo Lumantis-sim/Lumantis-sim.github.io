@@ -67,14 +67,15 @@
         }
 
         .logo img {
-            height: 70%; /* Le logo prendra 70% de la hauteur du bandeau (laisse un peu d'espace) */
-            width: auto;  /* La largeur s'ajuste automatiquement pour garder les proportions */
-            transition: transform 0.3s ease;
-        }
+    height: 70%; /* Ajuste selon la hauteur de ta nav */
+    width: auto;
+    /* La transition rend l'effet fluide au lieu d'être brutal */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
 
-        .logo img:hover {
-            transform: scale(1.05) translateY(-2px);
-        }
+.logo img:hover {
+    transform: scale(1.05) translateY(-2px);
+}
         
         .nav-links { display: flex; gap: 30px; }
         .nav-links a {
