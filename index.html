@@ -300,7 +300,9 @@
         .gallery-sub { display: flex; gap: 20px; height: 180px; }
         .gallery-sub .project-image-slot { flex: 1; }
 
-        .project-text { padding: 20px 0; }
+        /* MODIFICATION ICI : ajout du padding horizontal pour décoller le texte des bords */
+        .project-text { padding: 40px 50px; }
+        
         .project-text h3 { font-size: 1.8rem; margin-top: 0; }
         .project-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 0; }
 
@@ -344,6 +346,9 @@
             h2 { font-size: 2.2rem; }
             .hero h1 { font-size: 2.8rem; }
             .card { padding: 30px; }
+            /* AJUSTEMENT MOBILE POUR LE TEXTE DES PROJETS */
+            .project-text { padding: 30px; } 
+            
             .gallery-sub { flex-direction: column; height: auto; }
             .gallery-sub .project-image-slot { height: 200px; }
             .hero::after { width: 350px; height: 350px; } /* Ajustement mobile logo */
