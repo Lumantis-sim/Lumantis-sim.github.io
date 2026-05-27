@@ -134,15 +134,15 @@
             background-size: contain;
             z-index: -1; /* Reste derrière le texte */
             pointer-events: none; /* Le clic passe à travers */
-            mix-blend-mode: screen; /* Fait ressortir les couleurs lumineuses */
+            /*mix-blend-mode: screen; /* Fait ressortir les couleurs lumineuses */
             opacity: 0.12; /* Transparence pour rester lisible */
             animation: breathe 8s infinite alternate ease-in-out; /* Animation douce */
         }
 
         /* Animation de respiration pour le logo */
         @keyframes breathe {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
-            100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.18; }
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.25; }
+            100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.5; }
         }
 
         /* 3. Le texte au premier plan */
@@ -395,7 +395,7 @@
                 
                 <article class="project-item">
                     <div class="project-media project-image-slot single-image">
-                        <img src="ssimu_tnt.png" alt="Simulation onde de choc TNT">
+                        <img src="simu_tnt.png" alt="Simulation onde de choc TNT">
                     </div>
                     <div class="project-text card">
                         <div class="tags">
