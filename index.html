@@ -271,16 +271,15 @@
         .project-item:nth-child(even) { grid-template-columns: 1fr 1.2fr; }
         .project-item:nth-child(even) .project-media { order: 2; }
         .project-item:nth-child(even) .project-text { order: 1; }
-
-        .project-image-slot {
+.project-image-slot img {
             width: 100%;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-technical);
-            overflow: hidden;
-            position: relative;
-            transition: 0.3s;
+            height: 100%;
+            object-fit: contain; /* Remplacer 'cover' par 'contain' */
+            transition: transform 0.6s ease;
+            display: block;
+            background-color: #000000; /* Optionnel : met un fond noir derrière l'image si elle ne prend pas toute la place */
         }
+        
         .project-image-slot:hover {
             border-color: var(--accent-orange);
             box-shadow: 0 10px 30px rgba(249, 87, 56, 0.15);
