@@ -8,10 +8,10 @@
     <style>
         :root {
             /* Palette épurée s'inspirant de Lumnos/Atlantide */
-            --bg-dark: #030712; /* Plus profond */
-            --bg-card: #0b1120; /* technical card bg */
-            --accent-orange: #f95738; /* Lumnos/Thermique */
-            --accent-blue: #00e5ff;   /* Atlantide/Fluides */
+            --bg-dark: #030712; 
+            --bg-card: #0b1120; 
+            --accent-orange: #f95738; 
+            --accent-blue: #00e5ff;   
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --nav-bg: rgba(11, 17, 32, 0.9);
@@ -105,18 +105,47 @@
             text-align: center;
             padding: 0 20px;
             position: relative;
+            overflow: hidden; /* Empêche le logo géant de déborder sur les côtés */
         }
         
+        /* 1. Le halo de lumière au centre */
         .hero::before {
             content: '';
             position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(249, 87, 56, 0.08) 0%, rgba(5, 10, 24, 0) 70%);
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(249, 87, 56, 0.1) 0%, rgba(5, 10, 24, 0) 70%);
             border-radius: 50%;
             filter: blur(50px);
-            z-index: -1;
+            z-index: -2;
         }
 
+        /* 2. Le Logo Géant en filigrane (NOUVEAU) */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 750px; /* Taille massive */
+            height: 750px;
+            background-image: url('logo.png'); /* Pointe vers ton logo */
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            z-index: -1; /* Reste derrière le texte */
+            pointer-events: none; /* Le clic passe à travers */
+            mix-blend-mode: screen; /* Fait ressortir les couleurs lumineuses */
+            opacity: 0.12; /* Transparence pour rester lisible */
+            animation: breathe 8s infinite alternate ease-in-out; /* Animation douce */
+        }
+
+        /* Animation de respiration pour le logo */
+        @keyframes breathe {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.08; }
+            100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.18; }
+        }
+
+        /* 3. Le texte au premier plan */
         .hero h1 {
             font-size: clamp(2.8rem, 9vw, 5rem);
             margin: 0;
@@ -125,13 +154,19 @@
             background: linear-gradient(120deg, #fff 40%, var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1; /* Assure que le texte est au dessus du logo */
         }
+        
         .hero p {
             color: var(--text-muted);
             font-size: 1.25rem;
             max-width: 750px;
             margin: 25px 0 50px;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8); /* Rend le texte hyper lisible même sur le logo */
         }
 
         /* --- BOUTONS & TAGS --- */
@@ -145,6 +180,8 @@
             font-size: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid transparent;
+            position: relative;
+            z-index: 1;
         }
         .btn:hover {
             transform: translateY(-3px) scale(1.02);
@@ -235,7 +272,6 @@
         .project-item:nth-child(even) .project-media { order: 2; }
         .project-item:nth-child(even) .project-text { order: 1; }
 
-        /* Style commun pour les slots d'image */
         .project-image-slot {
             width: 100%;
             background: var(--bg-card);
@@ -258,10 +294,7 @@
         }
         .project-image-slot:hover img { transform: scale(1.05); }
 
-        /* Image unique (Projet 1 : TNT) */
         .single-image { height: 380px; }
-
-        /* Mosaïque (Projet 2 : Canada) */
         .project-gallery { display: flex; flex-direction: column; gap: 20px; }
         .gallery-main { height: 260px; }
         .gallery-sub { display: flex; gap: 20px; height: 180px; }
@@ -301,6 +334,7 @@
             .single-image { height: 300px; }
             .gallery-main { height: 220px; }
             .gallery-sub { height: 150px; }
+            .hero::after { width: 500px; height: 500px; } /* Ajustement mobile logo */
         }
 
         @media (max-width: 768px) {
@@ -312,6 +346,7 @@
             .card { padding: 30px; }
             .gallery-sub { flex-direction: column; height: auto; }
             .gallery-sub .project-image-slot { height: 200px; }
+            .hero::after { width: 350px; height: 350px; } /* Ajustement mobile logo */
         }
     </style>
 </head>
@@ -360,7 +395,7 @@
                 
                 <article class="project-item">
                     <div class="project-media project-image-slot single-image">
-                        <img src="simu_tnt.png" alt="Simulation onde de choc TNT">
+                        <img src="ssimu_tnt.png" alt="Simulation onde de choc TNT">
                     </div>
                     <div class="project-text card">
                         <div class="tags">
