@@ -28,7 +28,6 @@
         }
 
         /* --- BACKGROUND UI (ENGINEERED GRID) --- */
-        /* Remplacement des blobs par un maillage discret */
         body::before {
             content: '';
             position: fixed;
@@ -36,22 +35,21 @@
             background-image: 
                 linear-gradient(rgba(58, 80, 107, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(58, 80, 107, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px; /* Taille de la maille */
+            background-size: 50px 50px; 
             z-index: -1;
             opacity: 0.8;
         }
 
-        /* --- NAVIGATION (PREMIUM NAVIGATION) --- */
-       /* --- NAVIGATION --- */
+        /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            height: 70px; /* Hauteur fixe de ton bandeau */
+            height: 70px; 
             background: var(--nav-bg);
             backdrop-filter: blur(12px);
             display: flex;
-            align-items: center; /* IMPORTANT : Centre verticalement tous les éléments */
+            align-items: center; 
             justify-content: space-between;
             padding: 0 5%;
             box-sizing: border-box;
@@ -61,21 +59,20 @@
 
         .logo {
             display: flex;
-            align-items: center; /* Centre le logo */
-            height: 100%; /* Prend toute la hauteur du bandeau */
+            align-items: center; 
+            height: 100%; 
             text-decoration: none;
         }
 
         .logo img {
-    height: 100%; /* Ajuste selon la hauteur de ta nav */
-    width: auto;
-    /* La transition rend l'effet fluide au lieu d'être brutal */
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-}
+            height: 100%; 
+            width: auto;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
 
-.logo img:hover {
-    transform: scale(1.05) translateY(-2px);
-}
+        .logo img:hover {
+            transform: scale(1.05) translateY(-2px);
+        }
         
         .nav-links { display: flex; gap: 30px; }
         .nav-links a {
@@ -172,7 +169,7 @@
         /* --- SECTIONS (Général) --- */
         section {
             padding: 120px 10% 60px; 
-            max-width: 1400px; /* Plus large pour le nouveau portfolio */
+            max-width: 1400px; 
             margin: 0 auto;
         }
         h2 { font-size: 2.6rem; margin-bottom: 50px; font-weight: 700; }
@@ -202,7 +199,6 @@
             overflow: hidden;
         }
         
-        /* Effet technique au survol */
         .card::before {
             content: '';
             position: absolute;
@@ -221,26 +217,13 @@
             transform: translateY(-8px);
             box-shadow: 0 15px 40px rgba(0, 229, 255, 0.1);
         }
-        
         .card:hover::before { opacity: 1; }
-
         .card h3 { margin-top: 0; font-size: 1.6rem; font-weight: 600; position: relative; z-index: 1; }
         .card p { color: var(--text-muted); line-height: 1.7; position: relative; z-index: 1; }
-        .context-text {
-            font-size: 0.85rem;
-            color: #5a6e85;
-            margin-top: 25px;
-            font-style: italic;
-            position: relative; z-index: 1;
-        }
+        .context-text { font-size: 0.85rem; color: #5a6e85; margin-top: 25px; font-style: italic; position: relative; z-index: 1; }
 
-        /* --- PORTFOLIO (NEW ALTERNATING LAYOUT WITH IMAGE PLACEHOLDERS) --- */
-        .portfolio-list {
-            display: flex;
-            flex-direction: column;
-            gap: 80px;
-        }
-        
+        /* --- PORTFOLIO (IMAGES REELLES) --- */
+        .portfolio-list { display: flex; flex-direction: column; gap: 80px; }
         .project-item {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -248,53 +231,41 @@
             align-items: center;
         }
         
-        /* Alternance */
         .project-item:nth-child(even) { grid-template-columns: 1fr 1.2fr; }
-        .project-item:nth-child(even) .project-image-slot { order: 2; }
+        .project-item:nth-child(even) .project-media { order: 2; }
         .project-item:nth-child(even) .project-text { order: 1; }
 
-        /* Cadre technique pour future image */
+        /* Style commun pour les slots d'image */
         .project-image-slot {
             width: 100%;
-            height: 350px; /* Hauteur de la future image */
             background: var(--bg-card);
             border-radius: 12px;
             border: 1px solid var(--border-technical);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
             overflow: hidden;
+            position: relative;
             transition: 0.3s;
         }
-        
-        /* Simuler une maille de simulation vide */
-        .project-image-slot::before {
-            content: '';
-            position: absolute;
-            width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(58, 80, 107, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(58, 80, 107, 0.1) 1px, transparent 1px);
-            background-size: 15px 15px;
-        }
-        
         .project-image-slot:hover {
             border-color: var(--accent-orange);
             box-shadow: 0 10px 30px rgba(249, 87, 56, 0.15);
         }
-
-        /* Quand tu auras les images, remplace le contenu par ça : */
-        /* .project-image-slot img { width: 100%; height: 100%; object-fit: cover; } */
-
-        .placeholder-text {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-            text-align: center;
+        .project-image-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
         }
+        .project-image-slot:hover img { transform: scale(1.05); }
+
+        /* Image unique (Projet 1 : TNT) */
+        .single-image { height: 380px; }
+
+        /* Mosaïque (Projet 2 : Canada) */
+        .project-gallery { display: flex; flex-direction: column; gap: 20px; }
+        .gallery-main { height: 260px; }
+        .gallery-sub { display: flex; gap: 20px; height: 180px; }
+        .gallery-sub .project-image-slot { flex: 1; }
 
         .project-text { padding: 20px 0; }
         .project-text h3 { font-size: 1.8rem; margin-top: 0; }
@@ -302,71 +273,34 @@
 
         /* --- A PROPOS --- */
         .about-container {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-            background: var(--bg-card);
-            padding: 50px;
-            border-radius: 12px;
-            border: 1px solid var(--border-technical);
-            position: relative;
+            display: flex; gap: 50px; align-items: center; background: var(--bg-card);
+            padding: 50px; border-radius: 12px; border: 1px solid var(--border-technical); position: relative;
         }
-        
-        .about-text {
-            flex: 2;
-            color: var(--text-muted);
-            line-height: 1.9;
-            font-size: 1.05rem;
-        }
+        .about-text { flex: 2; color: var(--text-muted); line-height: 1.9; font-size: 1.05rem; }
         .about-text p { margin-top: 0; margin-bottom: 20px; }
         .about-text p:last-child { margin-bottom: 0; }
         
-        .about-stats {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .about-stats { flex: 1; display: flex; flex-direction: column; gap: 20px; }
         .stat-box {
-            background: rgba(11, 17, 32, 0.5);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(58, 80, 107, 0.2);
-            border-left: 3px solid var(--accent-orange);
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: 0.3s;
+            background: rgba(11, 17, 32, 0.5); padding: 20px; border-radius: 8px;
+            border: 1px solid rgba(58, 80, 107, 0.2); border-left: 3px solid var(--accent-orange);
+            font-size: 0.95rem; font-weight: 600; color: var(--text-main); transition: 0.3s;
         }
         .stat-box:hover { background: rgba(11, 17, 32, 0.9); border-color: rgba(58, 80, 107, 0.5); }
-
-        .stat-box span {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 400;
-            margin-top: 6px;
-            line-height: 1.4;
-        }
+        .stat-box span { display: block; color: var(--text-muted); font-size: 0.85rem; font-weight: 400; margin-top: 6px; line-height: 1.4; }
 
         /* --- FOOTER --- */
-        footer {
-            padding: 80px 0 60px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-technical);
-            margin-top: 60px;
-        }
-        footer br { margin-bottom: 10px; display: block; content: ""; }
+        footer { padding: 80px 0 60px; text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-technical); margin-top: 60px; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .project-item { grid-template-columns: 1fr; gap: 30px; }
             .project-item:nth-child(even) { grid-template-columns: 1fr; }
-            .project-item:nth-child(even) .project-image-slot { order: 1; }
+            .project-item:nth-child(even) .project-media { order: 1; }
             .project-item:nth-child(even) .project-text { order: 2; }
-            .project-image-slot { height: 280px; }
+            .single-image { height: 300px; }
+            .gallery-main { height: 220px; }
+            .gallery-sub { height: 150px; }
         }
 
         @media (max-width: 768px) {
@@ -376,6 +310,8 @@
             h2 { font-size: 2.2rem; }
             .hero h1 { font-size: 2.8rem; }
             .card { padding: 30px; }
+            .gallery-sub { flex-direction: column; height: auto; }
+            .gallery-sub .project-image-slot { height: 200px; }
         }
     </style>
 </head>
@@ -423,33 +359,43 @@
             <div class="portfolio-list">
                 
                 <article class="project-item">
-                    <div class="project-image-slot">
-                        <span class="placeholder-text">[ Simulation Maillage Maître : <br> Onde de Choc ISAE-ENSMA ]</span>
+                    <div class="project-media project-image-slot single-image">
+                        <img src="simu_tnt.png" alt="Simulation onde de choc TNT">
                     </div>
                     <div class="project-text card">
                         <div class="tags">
                             <span class="tag">OpenFOAM</span>
                             <span class="tag">Python</span>
-                            <span class="tag">Aérospatial</span>
+                            <span class="tag">Défense</span>
                         </div>
                         <h3>Propagation d'Ondes de Souffle</h3>
-                        <p>Simulation 3D instationnaire de l'explosion de réservoirs sous pression. Étude de la dynamique des gaz et des impacts thermiques associés. Automatisation du post-traitement.</p>
-                        <div class="context-text">Projet d'ingénierie - ISAE-ENSMA</div>
+                        <p>Simulation 3D instationnaire de l'explosion d'une charge de TNT. Étude de la dynamique des gaz compressibles, propagation du souffle et impacts thermiques associés. Automatisation du post-traitement.</p>
+                        <div class="context-text">Bureau d'étude / ISAE-ENSMA</div>
                     </div>
                 </article>
 
                 <article class="project-item">
-                    <div class="project-image-slot">
-                        <span class="placeholder-text">[ Simulation Maillage Maître : <br> Hydraulique Ottawa ]</span>
+                    <div class="project-media project-gallery">
+                        <div class="project-image-slot gallery-main">
+                            <img src="tsu2.png" alt="Modélisation de vague et Tsunami sur structure">
+                        </div>
+                        <div class="gallery-sub">
+                            <div class="project-image-slot">
+                                <img src="goutte3.png" alt="Propagation d'une goutte">
+                            </div>
+                            <div class="project-image-slot">
+                                <img src="hobs3tour.png" alt="Formation de tourbillon après écoulement">
+                            </div>
+                        </div>
                     </div>
                     <div class="project-text card">
                         <div class="tags">
                             <span class="tag">CFD</span>
-                            <span class="tag">Hydraulique</span>
+                            <span class="tag">Interaction Fluide-Structure</span>
                             <span class="tag">C++</span>
                         </div>
-                        <h3>Écoulements Autour d'Obstacles</h3>
-                        <p>Modélisation de la mécanique des fluides en milieu hydraulique complexe. Évaluation des turbulences et interaction fluide-structure pour optimiser la conception.</p>
+                        <h3>Hydrodynamique Complexe</h3>
+                        <p>Modélisation avancée de la mécanique des fluides : dynamique de propagation de gouttes, génération de tourbillons dans le sillage d'obstacles, et simulation de vagues massives (modélisation Tsunami) impactant des structures.</p>
                         <div class="context-text">Travaux de recherche - Université d'Ottawa</div>
                     </div>
                 </article>
@@ -461,7 +407,7 @@
             <h2>L'Expert derrière <span>Lumantis</span></h2>
             <div class="about-container">
                 <div class="about-text">
-                    <p>Issu des classes préparatoires mathématiques (MPSI/MP), je suis titulaire d'un diplôme d'ingénieur de l'<strong>ISAE-ENSMA</strong>, complété par un Master spécialisé en  combustion Turbulente et Diphasique.</p>
+                    <p>Issu des classes préparatoires mathématiques (MPSI/MP), je suis titulaire d'un diplôme d'ingénieur de l'<strong>ISAE-ENSMA</strong>, complété par un Master spécialisé en combustion Turbulente et Diphasique.</p>
                     <p>Mon expertise s'est forgée au CEA (hydrodynamique compressible) et à l'Université d'Ottawa (simulations complexes OpenFOAM/validations LIF-PIV).</p>
                     <p>Avec Lumantis, je mets cette rigueur scientifique au service des industriels, pour transformer leurs défis complexes en solutions numériques robustes.</p>
                 </div>
@@ -475,7 +421,7 @@
                         <span>Hydrodynamique (CEA) & Écoulements</span>
                     </div>
                     <div class="stat-box">
-                        💻Programm. Scientifique
+                        💻 Programm. Scientifique
                         <span>C++, Python, OpenFOAM, Cantera</span>
                     </div>
                 </div>
@@ -489,4 +435,3 @@
 
 </body>
 </html>
-
