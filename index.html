@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumantis | Ingénierie des Fluides & Thermique</title>
+    <meta name="description" content="Lumantis - Simulation CFD, ingénierie thermique et combustion pour l'Aérospatial, l'Énergie et la Défense.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Palette épurée s'inspirant de Lumnos/Atlantide */
-            --bg-dark: #030712; 
-            --bg-card: #0b1120; 
-            --accent-orange: #f95738; 
-            --accent-blue: #00e5ff;   
+            --bg-dark: #030712;
+            --bg-card: #0b1120;
+            --accent-orange: #f95738;
+            --accent-blue: #00e5ff;
             --text-main: #ffffff;
             --text-muted: #94a3b8;
             --nav-bg: rgba(11, 17, 32, 0.9);
             --border-technical: rgba(58, 80, 107, 0.3);
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -27,15 +30,30 @@
             overflow-x: hidden;
         }
 
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
         /* --- BACKGROUND UI (ENGINEERED GRID) --- */
         body::before {
             content: '';
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(58, 80, 107, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(58, 80, 107, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px; 
+            background-size: 50px 50px;
             z-index: -1;
             opacity: 0.8;
         }
@@ -45,11 +63,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            height: 70px; 
+            height: 70px;
             background: var(--nav-bg);
             backdrop-filter: blur(12px);
             display: flex;
-            align-items: center; 
+            align-items: center;
             justify-content: space-between;
             padding: 0 5%;
             box-sizing: border-box;
@@ -59,22 +77,26 @@
 
         .logo {
             display: flex;
-            align-items: center; 
-            height: 100%; 
+            align-items: center;
+            height: 100%;
             text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 0.02em;
+            color: var(--text-main);
         }
 
         .logo img {
-            height: 100%; 
+            height: 70%;
             width: auto;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .logo img:hover {
             transform: scale(1.05) translateY(-2px);
         }
-        
-        .nav-links { display: flex; gap: 30px; }
+
+        .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-links a {
             text-decoration: none;
             color: var(--text-muted);
@@ -83,7 +105,7 @@
             transition: 0.3s;
             position: relative;
         }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -95,6 +117,53 @@
         .nav-links a:hover { color: var(--accent-orange); }
         .nav-links a:hover::after { width: 100%; }
 
+        .nav-cta {
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: var(--accent-blue) !important;
+        }
+        .nav-cta::after { display: none; }
+        .nav-cta:hover { background: rgba(0, 229, 255, 0.16); color: var(--accent-blue) !important; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-technical);
+            border-radius: 6px;
+            width: 42px;
+            height: 42px;
+            color: var(--text-main);
+            font-size: 1.2rem;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-panel {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0; right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-technical);
+            flex-direction: column;
+            padding: 10px 5% 25px;
+            z-index: 999;
+        }
+        .mobile-panel.open { display: flex; }
+        .mobile-panel a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(58, 80, 107, 0.2);
+        }
+        .mobile-panel a:last-child { border-bottom: none; }
+        .mobile-panel a:hover { color: var(--accent-orange); }
+
         /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
@@ -105,10 +174,9 @@
             text-align: center;
             padding: 0 20px;
             position: relative;
-            overflow: hidden; /* Empêche le logo géant de déborder sur les côtés */
+            overflow: hidden;
         }
-        
-        /* 1. Le halo de lumière au centre */
+
         .hero::before {
             content: '';
             position: absolute;
@@ -119,33 +187,29 @@
             z-index: -2;
         }
 
-        /* 2. Le Logo Géant en filigrane (NOUVEAU) */
         .hero::after {
             content: '';
             position: absolute;
             top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 1500px; /* Taille massive */
+            width: 1500px;
             height: 1500px;
-            background-image: url('logo.png'); /* Pointe vers ton logo */
+            background-image: url('logo.png');
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            z-index: -1; /* Reste derrière le texte */
-            pointer-events: none; /* Le clic passe à travers */
-            /*mix-blend-mode: screen; /* Fait ressortir les couleurs lumineuses */
-            opacity: 0.5; /* Transparence pour rester lisible */
-            animation: breathe 8s infinite alternate ease-in-out; /* Animation douce */
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: breathe 8s infinite alternate ease-in-out;
         }
 
-        /* Animation de respiration pour le logo */
         @keyframes breathe {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
             100% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.75; }
         }
 
-        /* 3. Le texte au premier plan */
         .hero h1 {
             font-size: clamp(2.8rem, 9vw, 5rem);
             margin: 0;
@@ -155,18 +219,54 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
-            z-index: 1; /* Assure que le texte est au dessus du logo */
+            z-index: 1;
         }
-        
+
         .hero p {
             color: var(--text-muted);
             font-size: 1.25rem;
             max-width: 750px;
-            margin: 25px 0 50px;
+            margin: 25px 0 45px;
             line-height: 1.6;
             position: relative;
             z-index: 1;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.8); /* Rend le texte hyper lisible même sur le logo */
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 36px;
+            border: 2px solid var(--border-technical);
+            border-radius: 12px;
+            z-index: 1;
+        }
+        .scroll-cue::before {
+            content: '';
+            position: absolute;
+            top: 6px; left: 50%;
+            width: 4px; height: 8px;
+            background: var(--accent-blue);
+            border-radius: 2px;
+            transform: translateX(-50%);
+            animation: scrollcue 1.8s infinite ease-in-out;
+        }
+        @keyframes scrollcue {
+            0% { opacity: 1; top: 6px; }
+            60% { opacity: 0; top: 18px; }
+            100% { opacity: 0; top: 18px; }
         }
 
         /* --- BOUTONS & TAGS --- */
@@ -182,13 +282,24 @@
             border: 1px solid transparent;
             position: relative;
             z-index: 1;
+            display: inline-block;
         }
         .btn:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 10px 30px rgba(249, 87, 56, 0.3);
             border-color: rgba(255,255,255,0.2);
         }
-        
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-technical);
+            color: var(--text-main);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.12);
+        }
+
         .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
         .tag {
             display: inline-block;
@@ -205,8 +316,8 @@
 
         /* --- SECTIONS (Général) --- */
         section {
-            padding: 120px 10% 60px; 
-            max-width: 1400px; 
+            padding: 120px 10% 60px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         h2 { font-size: 2.6rem; margin-bottom: 50px; font-weight: 700; }
@@ -217,6 +328,16 @@
             bottom: -5px; left: 0; width: 100%; height: 3px;
             background: rgba(249, 87, 56, 0.3);
             border-radius: 2px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* --- CARDS & GRID --- */
@@ -235,12 +356,12 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
+            background-image:
                 linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
             background-size: 20px 20px;
@@ -267,19 +388,17 @@
             gap: 50px;
             align-items: center;
         }
-        
+
         .project-item:nth-child(even) { grid-template-columns: 1fr 1.2fr; }
         .project-item:nth-child(even) .project-media { order: 2; }
         .project-item:nth-child(even) .project-text { order: 1; }
-.project-image-slot img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Remplacer 'cover' par 'contain' */
-            transition: transform 0.6s ease;
-            display: block;
-            background-color: #000000; /* Optionnel : met un fond noir derrière l'image si elle ne prend pas toute la place */
+
+        .project-image-slot {
+            border-radius: 12px;
+            border: 1px solid var(--border-technical);
+            overflow: hidden;
+            transition: 0.4s ease;
         }
-        
         .project-image-slot:hover {
             border-color: var(--accent-orange);
             box-shadow: 0 10px 30px rgba(249, 87, 56, 0.15);
@@ -290,6 +409,7 @@
             object-fit: cover;
             transition: transform 0.6s ease;
             display: block;
+            background-color: #000;
         }
         .project-image-slot:hover img { transform: scale(1.05); }
 
@@ -299,9 +419,7 @@
         .gallery-sub { display: flex; gap: 20px; height: 180px; }
         .gallery-sub .project-image-slot { flex: 1; }
 
-        /* MODIFICATION ICI : ajout du padding horizontal pour décoller le texte des bords */
         .project-text { padding: 40px 50px; }
-        
         .project-text h3 { font-size: 1.8rem; margin-top: 0; }
         .project-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 0; }
 
@@ -313,7 +431,7 @@
         .about-text { flex: 2; color: var(--text-muted); line-height: 1.9; font-size: 1.05rem; }
         .about-text p { margin-top: 0; margin-bottom: 20px; }
         .about-text p:last-child { margin-bottom: 0; }
-        
+
         .about-stats { flex: 1; display: flex; flex-direction: column; gap: 20px; }
         .stat-box {
             background: rgba(11, 17, 32, 0.5); padding: 20px; border-radius: 8px;
@@ -323,8 +441,111 @@
         .stat-box:hover { background: rgba(11, 17, 32, 0.9); border-color: rgba(58, 80, 107, 0.5); }
         .stat-box span { display: block; color: var(--text-muted); font-size: 0.85rem; font-weight: 400; margin-top: 6px; line-height: 1.4; }
 
+        /* --- CONTACT --- */
+        .contact-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-technical);
+            border-radius: 12px;
+            padding: 55px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 260px; height: 260px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(5, 10, 24, 0) 70%);
+            filter: blur(10px);
+        }
+
+        .contact-intro {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin: 0 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            background: rgba(11, 17, 32, 0.6);
+            border: 1px solid rgba(58, 80, 107, 0.3);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+
+        .contact-icon {
+            width: 34px; height: 34px;
+            flex-shrink: 0;
+            border-radius: 6px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-blue);
+            font-size: 1rem;
+        }
+
+        .contact-row-text { display: flex; flex-direction: column; flex: 1; min-width: 160px; }
+        .contact-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #5a6e85; font-weight: 600; }
+        .contact-value {
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            word-break: break-word;
+        }
+        a.contact-value:hover { color: var(--accent-blue); }
+
+        .copy-btn {
+            background: rgba(58, 80, 107, 0.25);
+            border: 1px solid var(--border-technical);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.25s;
+            white-space: nowrap;
+        }
+        .copy-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+        .copy-btn.copied { border-color: #2ecc71; color: #2ecc71; }
+
+        .contact-side {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-side .btn { width: 100%; text-align: center; }
+
+        @media (max-width: 900px) {
+            .contact-container { grid-template-columns: 1fr; padding: 35px; }
+        }
+
         /* --- FOOTER --- */
         footer { padding: 80px 0 60px; text-align: center; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-technical); margin-top: 60px; }
+        footer a { color: var(--text-muted); }
+        footer a:hover { color: var(--accent-orange); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
@@ -335,22 +556,22 @@
             .single-image { height: 300px; }
             .gallery-main { height: 220px; }
             .gallery-sub { height: 150px; }
-            .hero::after { width: 500px; height: 500px; } /* Ajustement mobile logo */
+            .hero::after { width: 500px; height: 500px; }
         }
 
         @media (max-width: 768px) {
             section { padding: 100px 5% 40px; }
             .nav-links { display: none; }
+            .nav-toggle { display: flex; }
             .about-container { flex-direction: column; padding: 30px; }
             h2 { font-size: 2.2rem; }
             .hero h1 { font-size: 2.8rem; }
+            .hero-actions { flex-direction: column; width: 100%; max-width: 320px; }
             .card { padding: 30px; }
-            /* AJUSTEMENT MOBILE POUR LE TEXTE DES PROJETS */
-            .project-text { padding: 30px; } 
-            
+            .project-text { padding: 30px; }
             .gallery-sub { flex-direction: column; height: auto; }
             .gallery-sub .project-image-slot { height: 200px; }
-            .hero::after { width: 350px; height: 350px; } /* Ajustement mobile logo */
+            .hero::after { width: 350px; height: 350px; }
         }
     </style>
 </head>
@@ -364,29 +585,41 @@
             <a href="#services">Services</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#propos">À propos</a>
-            <a href="mailto:contact.lumantis@gmail.com">Contact</a>
+            <a href="#contact" class="nav-cta">Contact</a>
         </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobilePanel">☰</button>
     </nav>
+
+    <div class="mobile-panel" id="mobilePanel">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#propos">À propos</a>
+        <a href="#contact">Contact</a>
+    </div>
 
     <header class="hero">
         <h1>Ingénierie des <br>Fluides & Thermique</h1>
         <p>Expertise avancée en simulation CFD et automatisation de processus pour les secteurs de l'Aérospatial, de l'Énergie et de la Défense.</p>
-        <a href="#services" class="btn">Découvrir mes expertises</a>
+        <div class="hero-actions">
+            <a href="#services" class="btn">Découvrir mes expertises</a>
+            <a href="#contact" class="btn btn-outline">Me contacter</a>
+        </div>
+        <span class="scroll-cue" aria-hidden="true"></span>
     </header>
 
     <main>
         <section id="services">
             <h2>Nos <span>Expertises</span></h2>
             <div class="grid">
-                <div class="card">
+                <div class="card reveal">
                     <h3>Simulation CFD</h3>
                     <p>Analyse d'écoulements complexes, transferts thermiques et ondes de choc avec <strong>OpenFOAM</strong>.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <h3>Scripting & DevOps</h3>
                     <p>Développement de pipelines d'automatisation en <strong>Python/C++</strong> sous environnement Linux pour optimiser vos itérations.</p>
                 </div>
-                <div class="card">
+                <div class="card reveal">
                     <h3>Ingénierie Thermique</h3>
                     <p>Modélisation de combustion et thermodynamique des machines. Spécialisation en systèmes propulsifs.</p>
                 </div>
@@ -396,8 +629,8 @@
         <section id="portfolio">
             <h2>Cas <span>d'Études</span></h2>
             <div class="portfolio-list">
-                
-                <article class="project-item">
+
+                <article class="project-item reveal">
                     <div class="project-media project-image-slot single-image">
                         <img src="simu_tnt.png" alt="Simulation onde de choc TNT">
                     </div>
@@ -413,7 +646,7 @@
                     </div>
                 </article>
 
-                <article class="project-item">
+                <article class="project-item reveal">
                     <div class="project-media project-gallery">
                         <div class="project-image-slot gallery-main">
                             <img src="tsu2.png" alt="Modélisation de vague et Tsunami sur structure">
@@ -444,7 +677,7 @@
 
         <section id="propos">
             <h2>L'Expert derrière <span>Lumantis</span></h2>
-            <div class="about-container">
+            <div class="about-container reveal">
                 <div class="about-text">
                     <p>Issu des classes préparatoires mathématiques (MPSI/MP), je suis titulaire d'un diplôme d'ingénieur de l'<strong>ISAE-ENSMA</strong>, complété par un Master spécialisé en combustion Turbulente et Diphasique.</p>
                     <p>Mon expertise s'est forgée au CEA (hydrodynamique compressible) et à l'Université d'Ottawa (simulations complexes OpenFOAM/validations LIF-PIV).</p>
@@ -466,11 +699,118 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <h2>Me <span>Contacter</span></h2>
+            <div class="contact-container reveal">
+                <div>
+                    <p class="contact-intro">Un projet de simulation, une problématique de mécanique des fluides, de combustion ou de thermique à résoudre ? Écrivez-moi directement, je réponds sous 48h.</p>
+                    <div class="contact-details">
+                        <div class="contact-row">
+                            <div class="contact-icon" aria-hidden="true">✉</div>
+                            <div class="contact-row-text">
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:contact.lumantis@gmail.com" class="contact-value" id="contactEmail">contact.lumantis@gmail.com</a>
+                            </div>
+                            <button class="copy-btn" id="copyEmailBtn" type="button">Copier</button>
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-icon" aria-hidden="true">📍</div>
+                            <div class="contact-row-text">
+                                <span class="contact-label">Localisation</span>
+                                <span class="contact-value">Poitiers · Toulouse, France</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-side">
+                    <a href="mailto:contact.lumantis@gmail.com?subject=Demande%20de%20projet%20-%20Lumantis" class="btn">Envoyer un email</a>
+                    <a href="#" class="btn btn-outline" id="jumpTop">Retour en haut ↑</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Lumantis Simulation - Raoutsi Gueddoura <br> Ingénierie propulsée par la rigueur scientifique.</p>
+        <p>&copy; 2026 Lumantis Simulation - Raoutsi Gueddoura <br> Ingénierie propulsée par la rigueur scientifique. <br>
+        <a href="mailto:contact.lumantis@gmail.com">contact.lumantis@gmail.com</a></p>
     </footer>
+
+    <script>
+        // Menu mobile
+        (function () {
+            var toggle = document.getElementById('navToggle');
+            var panel = document.getElementById('mobilePanel');
+            if (!toggle || !panel) return;
+            toggle.addEventListener('click', function () {
+                var open = panel.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.textContent = open ? '✕' : '☰';
+            });
+            panel.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    panel.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.textContent = '☰';
+                });
+            });
+        })();
+
+        // Copier l'email
+        (function () {
+            var btn = document.getElementById('copyEmailBtn');
+            var email = document.getElementById('contactEmail');
+            if (!btn || !email) return;
+            btn.addEventListener('click', function () {
+                var text = email.textContent.trim();
+                var done = function () {
+                    var original = 'Copier';
+                    btn.textContent = 'Copié ✓';
+                    btn.classList.add('copied');
+                    setTimeout(function () {
+                        btn.textContent = original;
+                        btn.classList.remove('copied');
+                    }, 1800);
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(done).catch(function () {
+                        window.prompt('Copiez l\'adresse email :', text);
+                    });
+                } else {
+                    window.prompt('Copiez l\'adresse email :', text);
+                }
+            });
+        })();
+
+        // Retour en haut
+        (function () {
+            var link = document.getElementById('jumpTop');
+            if (!link) return;
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+
+        // Apparitions au scroll
+        (function () {
+            var items = document.querySelectorAll('.reveal');
+            if (!items.length) return;
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            items.forEach(function (el) { observer.observe(el); });
+        })();
+    </script>
 
 </body>
 </html>
