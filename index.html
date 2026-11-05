@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lumantis | Calcul CFD sous OpenFOAM, en renfort de vos équipes</title>
-<meta name="description" content="Ingénieur CFD indépendant (ISAE-ENSMA). Simulations d'écoulements et de transferts de chaleur sous OpenFOAM pour les bureaux d'études et les industriels : maillage, calcul, contrôles, rapport.">
+<meta name="description" content="Ingénieur CFD indépendant (ISAE-ENSMA). Simulations d'écoulements et de transferts de chaleur sous OpenFOAM pour les bureaux d'études et les industriels : maillage, calcul, contrôles, rapport. Réponse rapide.">
 <meta name="author" content="Raoutsi Gueddoura">
 <meta name="theme-color" content="#f4f6f8">
 <meta name="color-scheme" content="light">
@@ -607,6 +607,8 @@ strong { font-weight: 620; }
     background: #dfe5ec;
 }
 .projet-image img { width: 100%; height: 100%; object-fit: cover; }
+.projet-image.entier { background: #fff; }
+.projet-image.entier img { object-fit: contain; }
 .vues { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .vues button {
     padding: 5px 11px;
@@ -810,16 +812,16 @@ strong { font-weight: 620; }
     <section class="accueil" aria-labelledby="titre-accueil">
         <div class="conteneur">
             <h1 id="titre-accueil">Calcul CFD sous OpenFOAM, en renfort de vos équipes</h1>
-            <p class="chapeau">Ingénieur ISAE-ENSMA indépendant, je prends en charge vos simulations d'écoulements et de transferts de chaleur, du maillage au rapport. Pour les bureaux d'études et les industriels qui manquent de temps, pas de compétence.</p>
+            <p class="chapeau">Ingénieur ISAE-ENSMA indépendant, je prends en charge vos simulations d'écoulements et de transferts de chaleur, du maillage au rapport. Pour les bureaux d'études et les industriels qui veulent absorber un pic de charge, ou ajouter une compétence en simulation à leurs équipes.</p>
             <div class="actions">
                 <a class="bouton" href="#contact">Décrire votre besoin</a>
                 <a class="bouton bouton-clair" href="#demonstration">Voir l'étude de démonstration</a>
             </div>
-            <p class="precision">Basé à Montesson (78), j'interviens en Île-de-France et à distance. Réponse sous 48 h ouvrées.</p>
+            <p class="precision">Basé à Montesson (78), j'interviens en Île-de-France et à distance, et je réponds rapidement à chaque demande.</p>
 
             <figure class="sonde" id="sonde">
                 <div class="sonde-tete">
-                    <p class="sonde-titre">Coupe verticale d'un local de stockage<span>Étude de démonstration : 12 m de long, 4,5 m de haut, consigne de 22 ± 3 °C</span></p>
+                    <p class="sonde-titre">Un exemple : la coupe verticale d'un local de stockage<span>Tirée de l'étude de démonstration (cas fictif) : 12 m de long, 4,5 m de haut, consigne de 22 ± 3 °C</span></p>
                     <div class="saisons" role="group" aria-label="Saison affichée">
                         <button type="button" data-saison="ete" aria-pressed="true">Été</button>
                         <button type="button" data-saison="hiver" aria-pressed="false">Hiver</button>
@@ -906,10 +908,6 @@ strong { font-weight: 620; }
             </div>
             <dl class="domaines">
                 <div>
-                    <dt>Aéraulique et thermique de locaux</dt>
-                    <dd>Entrepôts, salles propres, confort, ventilation</dd>
-                </div>
-                <div>
                     <dt>Écoulements compressibles</dt>
                     <dd>Ondes de choc, détentes, mélanges de gaz</dd>
                 </div>
@@ -920,6 +918,10 @@ strong { font-weight: 620; }
                 <div>
                     <dt>Thermique et combustion</dt>
                     <dd>Transferts de chaleur, flammes, réacteurs</dd>
+                </div>
+                <div>
+                    <dt>Aéraulique et thermique de locaux</dt>
+                    <dd>Ventilation, confort, entrepôts, salles propres</dd>
                 </div>
             </dl>
         </div>
@@ -936,7 +938,7 @@ strong { font-weight: 620; }
         <div class="conteneur">
             <div class="section-tete">
                 <h2 id="titre-demo">Étude de démonstration</h2>
-                <p>Un local de stockage fictif, traité comme une vraie étude. Le cas est réduit et ses données sont illustratives ; la méthode et le livrable sont ceux d'une étude réelle.</p>
+                <p>Pour montrer à quoi ressemble un livrable, j'ai traité un cas fictif comme une vraie étude : la thermique d'un local de stockage. Le cas est réduit et ses données sont illustratives ; la démarche, les contrôles et le rapport sont ceux que j'applique à tout type d'écoulement.</p>
             </div>
             <div class="cas">
                 <dl class="fiche">
@@ -1034,23 +1036,23 @@ strong { font-weight: 620; }
         <div class="conteneur">
             <div class="section-tete">
                 <h2 id="titre-methode">Comment se déroule une étude</h2>
-                <p>Un calcul CFD dépend de ses hypothèses autant que du logiciel. Elles sont écrites dès le devis, et chaque résultat est contrôlé avant de vous être remis.</p>
+                <p>Un calcul CFD dépend de ses hypothèses autant que du logiciel. Elles sont écrites dès le devis, chaque résultat est contrôlé avant de vous être remis, et vous êtes tenu au courant de l'avancement tout au long de l'étude.</p>
             </div>
             <ol class="etapes">
                 <li>
                     <h3>Cadrage et devis</h3>
-                    <p>Vous décrivez le besoin en quelques lignes. Je reviens avec mes questions, puis un devis ferme : hypothèses, livrables, délai.</p>
-                    <span class="engagement">Réponse sous 48 h ouvrées</span>
+                    <p>Vous décrivez le besoin en quelques lignes. Je reviens vers vous avec mes questions, puis un devis ferme : hypothèses, livrables, délai.</p>
+                    <span class="engagement">Réponse rapide</span>
                 </li>
                 <li>
                     <h3>Données et modèle</h3>
-                    <p>Plans, relevés et conditions de fonctionnement deviennent une maquette numérique, maillée puis vérifiée.</p>
+                    <p>Géométrie, conditions de fonctionnement et mesures disponibles deviennent une maquette numérique, maillée puis vérifiée.</p>
                     <span class="engagement">Test de sensibilité au maillage</span>
                 </li>
                 <li>
                     <h3>Calcul et contrôles</h3>
                     <p>Calcul sous OpenFOAM, puis vérification de la convergence, des bilans et, quand elles existent, des mesures.</p>
-                    <span class="engagement">Bilans de masse et d'énergie bouclés</span>
+                    <span class="engagement">Convergence et bilans vérifiés</span>
                 </li>
                 <li>
                     <h3>Rapport et restitution</h3>
@@ -1117,8 +1119,8 @@ strong { font-weight: 620; }
                         </div>
                         <div class="vues" role="group" aria-label="Images du projet">
                             <button type="button" aria-pressed="true" data-src="stage/choc_bulle_helium.webp" data-alt="Interaction choc-bulle air/hélium : masse volumique et fraction massique d'air, la bulle s'enroule en deux tourbillons">Choc-bulle air/hélium</button>
-                            <button type="button" aria-pressed="false" data-src="stage/schlieren_helium.webp" data-alt="Schlieren numérique de masse volumique d'une bulle d'hélium traversée par un choc">Schlieren, hélium</button>
-                            <button type="button" aria-pressed="false" data-src="stage/schlieren_eau_air.webp" data-alt="Schlieren numérique de pression lors de l'effondrement d'une bulle d'air dans l'eau">Schlieren, eau et air</button>
+                            <button type="button" aria-pressed="false" data-src="stage/schlieren_helium.webp" data-entier data-alt="Schlieren numériques de pression (en haut) et de masse volumique (en bas) : un choc traverse une bulle d'hélium dans l'air">Schlieren, hélium</button>
+                            <button type="button" aria-pressed="false" data-src="stage/schlieren_eau_air.webp" data-entier data-alt="Schlieren numériques de pression (en haut) et de masse volumique (en bas) : effondrement d'une bulle d'air dans l'eau sous l'effet d'un choc">Schlieren, eau et air</button>
                         </div>
                     </div>
                     <div class="projet-texte">
@@ -1214,7 +1216,7 @@ strong { font-weight: 620; }
             </div>
             <div class="apropos">
                 <div class="apropos-texte">
-                    <p>Issu des classes préparatoires (MPSI/MP), je suis ingénieur diplômé de l'<strong>ISAE-ENSMA</strong>, avec un master spécialisé en combustion turbulente et diphasique.</p>
+                    <p>Je suis ingénieur diplômé de l'<strong>ISAE-ENSMA</strong>, avec un master spécialisé en combustion turbulente et diphasique.</p>
                     <p>Mon expérience s'est construite à l'Université d'Ottawa, sur des simulations OpenFOAM d'écoulements hydrauliques menées en parallèle de mesures LIF et PIV, puis au CEA, lors de mon stage de fin d'études, sur les méthodes numériques pour les écoulements compressibles multi-matériaux.</p>
                     <p>Lumantis est une activité individuelle : vous échangez avec la personne qui fait les calculs. Et je vous dis quand un sujet sort de mon périmètre, plutôt que de vous vendre une compétence que je n'ai pas.</p>
                 </div>
@@ -1247,11 +1249,11 @@ strong { font-weight: 620; }
             <div class="questions">
                 <details>
                     <summary>Quelles données faut-il fournir&nbsp;?</summary>
-                    <p>Des plans ou une maquette 3D, les dimensions des bouches et les débits, les températures de soufflage et de parois (un scan thermique convient), et les mesures dont vous disposez déjà. Le cadrage sert à faire la liste ensemble ; une hypothèse manquante est écrite noir sur blanc plutôt que devinée.</p>
+                    <p>La géométrie (CAO, plans ou maquette 3D), les conditions de fonctionnement (débits, pressions, températures, propriétés des fluides) et, si vous en avez, des mesures pour comparer. Le cadrage sert à faire la liste ensemble ; une donnée manquante devient une hypothèse écrite noir sur blanc, jamais devinée.</p>
                 </details>
                 <details>
                     <summary>Combien de temps dure une étude&nbsp;?</summary>
-                    <p>Quelques jours pour un renfort ponctuel. Pour une étude complète, en général de deux à huit semaines selon la taille du modèle et le nombre de scénarios. Le délai est écrit dans le devis.</p>
+                    <p>Je réponds rapidement à chaque demande. Le délai de réalisation dépend du volume de calcul et de ma charge de travail du moment ; il est fixé avec vous dans le devis. Comme je travaille en indépendant, je peux m'organiser pour aller vite, et je vous tiens au courant de l'avancement tout au long de l'étude.</p>
                 </details>
                 <details>
                     <summary>Pourquoi OpenFOAM&nbsp;?</summary>
@@ -1276,7 +1278,7 @@ strong { font-weight: 620; }
         <div class="conteneur contact">
             <div class="contact-texte">
                 <h2 id="titre-contact">Parlons de votre projet</h2>
-                <p>Un dossier en attente faute de temps, un pic de charge, une question d'écoulement ou de thermique ? Décrivez le besoin en quelques lignes : je réponds sous 48 h ouvrées, y compris pour vous dire que ce n'est pas dans mon périmètre.</p>
+                <p>Un dossier en attente, un pic de charge, une compétence en simulation à ajouter à votre équipe ? Décrivez le besoin en quelques lignes : je vous réponds rapidement, y compris pour vous dire si le sujet sort de mon périmètre.</p>
                 <div class="actions">
                     <a class="bouton" href="mailto:contact.lumantis@gmail.com?subject=Demande%20d%27%C3%A9tude%20CFD&amp;body=Bonjour%2C%0D%0A%0D%0AContexte%20%28installation%2C%20produit%2C%20local%29%20%3A%0D%0A%0D%0AObjectif%20de%20l%27%C3%A9tude%20%3A%0D%0A%0D%0ADonn%C3%A9es%20disponibles%20%28plans%2C%20mesures%2C%20conditions%20de%20fonctionnement%29%20%3A%0D%0A%0D%0AD%C3%A9lai%20souhait%C3%A9%20%3A%0D%0A%0D%0A">Écrire un e-mail</a>
                 </div>
@@ -1292,8 +1294,8 @@ strong { font-weight: 620; }
                     <dd>Île-de-France et à distance</dd>
                 </div>
                 <div>
-                    <dt>Délai de réponse</dt>
-                    <dd>Sous 48 h ouvrées</dd>
+                    <dt>Réponse</dt>
+                    <dd>Rapide, à chaque demande</dd>
                 </div>
             </dl>
             <p class="invisible" role="status" aria-live="polite" id="copieStatut"></p>
@@ -1440,6 +1442,7 @@ strong { font-weight: 620; }
             b.addEventListener('click', function () {
                 image.src = b.getAttribute('data-src');
                 image.alt = b.getAttribute('data-alt');
+                image.parentNode.classList.toggle('entier', b.hasAttribute('data-entier'));
                 boutons.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
             });
         });
